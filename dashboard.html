@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OptixFX — Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body class="dashboard-body">
+<div class="d-flex">
+  <aside class="sidebar p-3">
+    <a class="navbar-brand d-flex align-items-center gap-2 mb-3 text-decoration-none text-white" href="index.html">
+      <span class="brand-logo"></span><strong>OptixFX</strong>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column gap-1">
+      <li class="nav-item"><a href="dashboard.html" class="nav-link active"><i class="bi bi-grid me-2"></i> Overview</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-currency-exchange me-2"></i> Markets</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-journal-text me-2"></i> Orders</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-wallet2 me-2"></i> Wallet</a></li>
+      <li class="nav-item"><a href="account.html" class="nav-link"><i class="bi bi-person me-2"></i> Account</a></li>
+      <li class="nav-item mt-3"><a href="login.html" class="nav-link text-danger"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="flex-grow-1">
+    <div class="topbar d-flex align-items-center justify-content-between px-3">
+      <h5 class="mb-0 fw-bold">Overview</h5>
+      <div class="d-flex align-items-center gap-2">
+        <input class="form-control form-control-sm w-auto" placeholder="Search…">
+        <button class="btn btn-sm btn-outline-light"><i class="bi bi-gear"></i></button>
+      </div>
+    </div>
+
+    <div class="container-fluid py-4">
+      <div class="row g-3">
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div class="kpi-label">Balance</div>
+            <div class="kpi-value">$12,840</div>
+            <div class="kpi-trend text-success">+3.1%</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div class="kpi-label">Equity</div>
+            <div class="kpi-value">$12,420</div>
+            <div class="kpi-trend text-danger">-0.7%</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div class="kpi-label">Open P/L</div>
+            <div class="kpi-value text-success">+$240</div>
+            <div class="kpi-trend text-success">+0.9%</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div class="kpi-label">Margin Level</div>
+            <div class="kpi-value">365%</div>
+            <div class="kpi-trend text-success">+12%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-lg-8">
+          <div class="card p-3 rounded-4 glassy">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="mb-0">EUR/USD — 1H</h6>
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-light active">1H</button>
+                <button class="btn btn-outline-light">4H</button>
+                <button class="btn btn-outline-light">1D</button>
+              </div>
+            </div>
+            <canvas id="priceChart" height="120"></canvas>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card p-3 rounded-4 glassy h-100">
+            <h6>Top Pairs</h6>
+            <div class="table-responsive small">
+              <table class="table table-borderless align-middle mb-0">
+                <thead class="text-secondary">
+                  <tr><th>Pair</th><th>Price</th><th>24h</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>EUR/USD</td><td>1.0921</td><td class="text-success">+0.42%</td></tr>
+                  <tr><td>GBP/USD</td><td>1.2844</td><td class="text-danger">-0.18%</td></tr>
+                  <tr><td>USD/JPY</td><td>145.22</td><td class="text-success">+0.11%</td></tr>
+                  <tr><td>AUD/USD</td><td>0.6681</td><td class="text-danger">-0.07%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-lg-7">
+          <div class="card p-3 rounded-4 glassy">
+            <h6>Recent Orders</h6>
+            <div class="table-responsive small">
+              <table class="table table-borderless align-middle mb-0">
+                <thead class="text-secondary">
+                  <tr><th>Time</th><th>Pair</th><th>Type</th><th>Size</th><th>Price</th><th>P/L</th><th></th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>10:12</td><td>EUR/USD</td><td><span class="badge bg-success-subtle text-success">Buy</span></td><td>0.50</td><td>1.0910</td><td class="text-success">+$34</td><td><button class="btn btn-sm btn-outline-light">Details</button></td></tr>
+                  <tr><td>09:47</td><td>GBP/USD</td><td><span class="badge bg-danger-subtle text-danger">Sell</span></td><td>0.30</td><td>1.2851</td><td class="text-danger">-$12</td><td><button class="btn btn-sm btn-outline-light">Details</button></td></tr>
+                  <tr><td>08:25</td><td>USD/JPY</td><td><span class="badge bg-success-subtle text-success">Buy</span></td><td>0.20</td><td>145.08</td><td class="text-success">+$18</td><td><button class="btn btn-sm btn-outline-light">Details</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card p-3 rounded-4 glassy h-100">
+            <h6>Allocation</h6>
+            <canvas id="allocChart" height="140"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+// Charts
+document.addEventListener('DOMContentLoaded', () => {
+  const priceCtx = document.getElementById('priceChart');
+  if (priceCtx) {
+    new Chart(priceCtx, {
+      type: 'line',
+      data: {
+        labels: Array.from({length: 50}, (_, i) => i),
+        datasets: [{ data: [1.08,1.081,1.079,1.082,1.083,1.082,1.086,1.087,1.085,1.088,1.09,1.091,1.093,1.092,1.091,1.094,1.095,1.093,1.092,1.094,1.095,1.096,1.095,1.094,1.096,1.097,1.096,1.095,1.097,1.098,1.099,1.098,1.097,1.099,1.1,1.099,1.098,1.1,1.101,1.1,1.101,1.102,1.101,1.102,1.101,1.102,1.101,1.102,1.091,1.092], fill: true, tension: .35 }]
+      },
+      options: { plugins: { legend: { display: false } } }
+    });
+  }
+  const allocCtx = document.getElementById('allocChart');
+  if (allocCtx) {
+    new Chart(allocCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Forex','Crypto','Commodities','Indices'],
+        datasets: [{ data: [55,20,15,10] }]
+      },
+      options: { plugins: { legend: { position: 'bottom' } } }
+    });
+  }
+});
+</script>
+</body>
+</html>
